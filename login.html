@@ -5,33 +5,109 @@
     <link rel="stylesheet" href="style.css">
     <title> Live Score </title>
   </head>
-  <body class="home-page">
-    <div class="center-container-outer">
-      <div class="center-container-inner">
-        <img src="livescore.png">
-        <form id="login" class="login-form" onsubmit="event.preventDefault();doLogin();">
-          <p class="text-center"> Login to receive more info </p>
-          <div class="input-group form-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input id="email" type="email" class="form-control" name="email" placeholder="Email">
-          </div>
-          <div class="input-group form-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-          </div>
-          <div class="clear">
-            <a href="register.html" class="pull-left">New Account</a>
-            <a href="forgot-password.html" class="pull-right">Forgot password</a>
-          </div>
-        </form>
+  <body>
+
+    <div class="container">
+      <div class="row hide" id="content">
+        <table>
+          <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>Ernst Handel</td>
+            <td>Roland Mendel</td>
+            <td>Austria</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>            
+          </tr>
+          <tr>
+            <td>Island Trading</td>
+            <td>Helen Bennett</td>
+            <td>UK</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>            
+          </tr>
+          <tr>
+            <td>Laughing Bacchus Winecellars</td>
+            <td>Yoshi Tannamuri</td>
+            <td>Canada</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>            
+          </tr>
+          <tr>
+            <td>Magazzini Alimentari Riuniti</td>
+            <td>Giovanni Rovelli</td>
+            <td>Italy</td>
+            <td>
+              <span class="glyphicon glyphicon-pencil icon"></span>
+              <span class="glyphicon glyphicon-remove text-danger icon"></span>
+            </td>            
+          </tr>
+        </table>
       </div>
     </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close hide" data-dismiss="modal">&times;</button>
+            <img src="livescore.png" class="center-logo">
+            <form id="login" class="login-form" onsubmit="event.preventDefault();doLogin();">
+              <h4 class="text-center"> Login to receive more info </h4>
+              <div class="input-group form-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+              </div>
+              <div class="input-group form-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+              </div>
+              <div class="clear">
+                <a href="register.html" class="pull-left">New Account</a>
+                <a href="forgot-password.html" class="pull-right">Forgot password</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Login Modal -->
+
   </body>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
