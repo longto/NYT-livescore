@@ -1,0 +1,27 @@
+.center-container-outer{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center-container-inner{
+  display: inline-block;
+  text-align: center;
+}
+.home-page{
+  background: #ffffff url("Kkp2oh8.jpeg") no-repeat center;
+  background-size: cover;
+}
+.login-form{
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 360px;
+  margin-top: 20px;
+  text-align: left;
+}
+.clear:after,.clear:before{
+  content: '';
+  display: block;
+  clear: both;
+}
