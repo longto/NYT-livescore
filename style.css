@@ -37,14 +37,15 @@ table {
     width: 100%;
     margin-top : 20px;
 }
-
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
     text-transform: capitalize;
 }
-
+td[contenteditable]{  
+  outline: -webkit-focus-ring-color auto 5px;
+}
 tr:nth-child(even) {
     background-color: #dddddd;
 }

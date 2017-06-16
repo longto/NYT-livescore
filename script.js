@@ -38,7 +38,7 @@ var ce = function(tag,options,child){
   if (options){
     for (var attr in options) {
       tag.setAttribute(attr,options[attr]);
-    }  
+    }
   }
   if (child) tag.innerHTML=child;
   return tag;
@@ -61,19 +61,48 @@ var createTable = function(data){
     for(var attr in item){
       tr.appendChild(ce('td',null,item[attr]));
     }
-    var td=ce('td');
+    var td=ce('td',{
+      "readonly" : true
+    });
     var edit=ce('span',{
       'class':'glyphicon glyphicon-pencil action',
       'title' : 'edit',
-      'dataId' : id
+      'data-id' : id,
+      'data-status' : 'edit'
     });
-    var close=ce('span',{
+    edit.addEventListener('click',function(e){
+      var that = e.target;
+      var id = that.dataset.id;
+      if (that.dataset.status=="edit") {
+        that.dataset.status="update";
+        $(that).closest("tr").find("td:not([readonly])").attr("contenteditable",true);
+        $(that).removeClass("glyphicon-pencil").addClass("glyphicon-refresh");
+      }
+      else {
+        that.dataset.status="edit";
+        var newPost = {};
+        $(that).closest("tr").find("td:not([readonly])").each(function(e){
+          newPost[e==0?"category":e==1?"image":"title"]=this.innerHTML;
+        }).removeAttr("contenteditable");
+        //console.log(id,newPost);
+        database.ref("posts/"+id+"/").set(newPost);
+        $(that).removeClass("glyphicon-refresh").addClass("glyphicon-pencil");
+      }
+    });
+    var remove=ce('span',{
       'class':'glyphicon glyphicon-remove text-danger action',
       'title' : 'delete',
-      'dataId' : id
+      'data-id' : id
+    });
+    remove.addEventListener('click',function(e){
+      //console.log(e.target.dataset.id);
+      var that = e.target;
+      var id = that.dataset.id;
+      database.ref("posts/"+id+"/").remove();
+      $(that).closest("tr").remove();
     });
     td.appendChild(edit);
-    td.appendChild(close);
+    td.appendChild(remove);
     tr.appendChild(td);
     table.appendChild(tr);
     count++;
@@ -88,6 +117,23 @@ var doWelcome = function(e){
   refPosts.once("value", function(data) {
     createTable(data.val());
   });
+  //listen for the change
+  refPosts.on("value", function(data) {
+    console.log(data.val());
+  });
+  //listen for the child add
+  refPosts.on("child_added", function(data) {
+    console.log(data.val());
+  });
+  //listen for the child update
+  refPosts.on("child_changed", function(data) {
+    console.log(data.val());
+  });
+  //listen for the child remove
+  refPosts.on("child_changed", function(data) {
+    console.log(data.val());
+  });
+
   var newPostRef = database.ref("posts/").push({
     "title" : "alone in mountain"+Math.floor(Math.random()*1000),
     "category" : "travel"+Math.floor(Math.random()*1000),
@@ -109,7 +155,6 @@ var doLogin = function(e){
   }).then(function(user){
     console.log(user);
     checkLoginStatus();
-    
     //window.location.href="index.html";
   });
 }
